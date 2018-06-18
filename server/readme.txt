@@ -1,5 +1,8 @@
 服务端
 
+服务器后台运行server.py
+sudo nohup python -u server.py start > runmicroblog.log 2>&1 &
+
 pip3 install pipreqs
 pipreqs /path
 
