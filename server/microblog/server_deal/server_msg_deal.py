@@ -27,12 +27,12 @@ class ServerMsgDeal(object):
 		data_size = int(self.conn.recv(5).decode())
 		#收到的总长度
 		recv_size = 0
-		total_data = ""
+		total_data = b""
 		print("传入报文长度为:", data_size)
 		while recv_size < data_size:
 			print("继续等待报文接收:")
 			print("已接受报文长度为:",len(total_data))
-			data = self.conn.recv(buffersize).decode()
+			data = self.conn.recv(buffersize)
 			#如果第一次接收的数据小于缓存区的大小,直接退出
 			if len(data) < buffersize:
 				total_data = data
@@ -44,13 +44,13 @@ class ServerMsgDeal(object):
 				if data_size - len(total_data) == 0:
 					break
 
-				left_data = self.conn.recv(data_size - len(total_data)).decode()
+				left_data = self.conn.recv(data_size - len(total_data))
 				total_data += left_data
 				if data_size - len(total_data) < buffersize:
 					break			
-		print("接收到的请求报文为:", total_data)		
+		print("接收到的请求报文为:", total_data.decode())		
 		# 解析xml报文
-		msgdict = decode_msg_to_dict(total_data)
+		msgdict = decode_msg_to_dict(total_data.decode())
 		self.msgdict = msgdict
 
 
@@ -108,7 +108,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -133,7 +133,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -207,7 +207,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -226,7 +226,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -245,7 +245,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -264,7 +264,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -285,7 +285,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -309,7 +309,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -326,7 +326,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -344,7 +344,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 
@@ -387,7 +387,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 	
@@ -416,7 +416,7 @@ class ServerMsgDeal(object):
 		body = XmlMsgBody(bodydict)
 		xml = MsgEncoder(header,body)
 		resp = xml.generate_xml()
-		resp = '%05d' % len(resp) + resp
+		resp = '%05d' % len(resp.encode()) + resp
 		print("要发送的报文为:", resp)
 		self.conn.send(resp.encode())
 

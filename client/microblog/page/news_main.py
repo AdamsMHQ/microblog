@@ -29,6 +29,7 @@ class Ui_message1(object):
         self.u = Comment()
         self.Dialog = QtWidgets.QDialog()
         self.u.setupUi1(self.Dialog)
+
         self.userid=userid
         self.username=username
         
@@ -212,7 +213,9 @@ class Ui_message1(object):
         
         # 通过用户id和评论块调用
         statuscode, blogmsglist = self.client.do_show_bloginfo(self.userid, 2)
+
         l = ''
+
         if statuscode == '0000':
             for admin in blogmsglist:
                 msg = admin.getmessagesobject()
@@ -222,7 +225,9 @@ class Ui_message1(object):
                 self.u.textBrowser.append('*'*42)
                 
                 self.u.textBrowser.append('''<p style="color:'orange';font-size:20px;">消息</p>''')
+
                 l = znews + "\n"+'-'*59+'\n'
+
                 self.u.textBrowser.append(l)
                 self.u.textBrowser.append('''<p style="color:'orange';font-size:20px;">用户评论</p>''')
                 comname = admin.getusername()
