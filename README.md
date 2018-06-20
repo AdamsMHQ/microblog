@@ -11,7 +11,7 @@
 
 数据库使用MySQL
 
-项目所需的环境在requirement.txt中
+项目所需的环境在requirements.txt中
 
 client 文件夹内为客户端内容, server文件夹下为服务端内容
 
