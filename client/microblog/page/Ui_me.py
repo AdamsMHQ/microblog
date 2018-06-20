@@ -240,12 +240,13 @@ class Ui_me(object):
         self.gender_t.setText(gender)
         self.stime_t.setText(stime)
         self.introduction.setText(introduction)
-        if (not blog) or (not good):
-            self.blog_count.setText("0")
-            self.good_count.setText("0")
-        else:
+        print(blog, good)
+        if blog or good:
             self.blog_count.setText(blog)
             self.good_count.setText(good)
+        else:
+            self.blog_count.setText("0")
+            self.good_count.setText("0")
 
 
 if __name__ == "__main__":
