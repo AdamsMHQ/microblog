@@ -18,32 +18,13 @@ client 文件夹内为客户端内容, server文件夹下为服务端内容
 运行项目需要修改包内每一个__init__.py中的路径为当前工作路径
 
 一些可能用到的命令:
-pip3 install pipreqs
-pipreqs /path
 
-pip --- Python2的标准第三方库管理工具
-pip3 --- Python3的标准第三方库管理工具
-
-安装软件
-pip3 install Package
-
-升级软件
-pip3 install --upgrade Package
-
-卸载软件
-pip3 uninstall Package
-
-查看软件包清单
-pip3 list
-
-查找软件包
-pip3 search Package
-
-查看软件包信息
-pip3 show Package
-
-记录软件环境
+记录软件环境，可以使用下面的命令
 pip3 freeze >requirement.txt
+本项目使用以下pipreqs收集第三方的依赖库信息
+pip3 install pipreqs
+在项目目录下执行以下命令，自动生成写入到requirements.txt文件中
+pipreqs .
 
 根据环境文件进行环境安装
-pip3 install -r requirement.txt
+pip3 install -r requirements.txt
