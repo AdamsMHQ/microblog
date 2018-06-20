@@ -11,7 +11,7 @@
 
 数据库使用MySQL
 
-项目所需的环境在requirement.txt中
+项目所需的环境在requirements.txt中
 
 client 文件夹内为客户端内容, server文件夹下为服务端内容
 
@@ -20,11 +20,17 @@ client 文件夹内为客户端内容, server文件夹下为服务端内容
 一些可能用到的命令:
 
 记录软件环境，可以使用下面的命令
+
 pip3 freeze >requirement.txt
+
 本项目使用以下pipreqs收集第三方的依赖库信息
+
 pip3 install pipreqs
+
 在项目目录下执行以下命令，自动生成写入到requirements.txt文件中
+
 pipreqs .
 
 根据环境文件进行环境安装
+
 pip3 install -r requirements.txt

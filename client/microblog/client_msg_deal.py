@@ -40,12 +40,12 @@ class ClientMsgDeal(object):
 		data_size = int(self.sockfd.recv(5).decode())
 		#收到的总长度
 		recv_size = 0
-		total_data = ""
+		total_data = b""
 		print("传入报文长度为:", data_size)
 		while recv_size < data_size:
 			print("继续等待报文接收:")
 			print("已接受报文长度为:",len(total_data))
-			data = self.sockfd.recv(buffersize).decode()
+			data = self.sockfd.recv(buffersize)
 			#如果第一次接收的数据小于缓存区的大小,直接退出
 			if len(data) < buffersize:
 				total_data = data
@@ -57,12 +57,12 @@ class ClientMsgDeal(object):
 				if data_size - len(total_data) == 0:
 					break
 
-				left_data = self.sockfd.recv(data_size - len(total_data)).decode()
+				left_data = self.sockfd.recv(data_size - len(total_data))
 				total_data += left_data
 				if data_size - len(total_data) < buffersize:
 					break			
-		print("接收到的响应报文为:", total_data)
-		msgdict = decode_msg_to_dict(total_data)
+		print("接收到的响应报文为:", total_data.decode())
+		msgdict = decode_msg_to_dict(total_data.decode())
 		self.msgdict = msgdict
 		self.close_conn()
 
@@ -97,7 +97,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码
@@ -137,7 +137,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码
@@ -179,7 +179,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -274,7 +274,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -307,7 +307,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -344,7 +344,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -378,7 +378,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -415,7 +415,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -453,7 +453,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -485,7 +485,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -521,7 +521,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -564,7 +564,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
@@ -620,7 +620,7 @@ class ClientMsgDeal(object):
 		#生成xml报文
 		xml = MsgEncoder(header,body)
 		#生成要发送的报文
-		msg = "%05d" % len(xml.generate_xml()) + xml.generate_xml()
+		msg = "%05d" % len(xml.generate_xml().encode()) + xml.generate_xml()
 		#发送报文,并返回字典
 		self.send_msg(msg)
 		#从字典中获得状态码和状态描述
