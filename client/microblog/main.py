@@ -579,6 +579,7 @@ class Main(object):
                     self.remind.info.setText('点赞成功, 您已成功关注该用户!')
                     self.search.get_hot()
                     self.showed = self.search.get_hotblog()
+                    self.search_page()
             else:
                 self.remind.info.setText('发生错误, 请稍后重试!')
         else:
@@ -614,7 +615,7 @@ class Main(object):
                 if code == '0000':
                     self.remind.info.setText('转发成功!')
                     self.search.get_hot()
-                    self.showed = self.search.get_hotblog()
+                    self.showed = self.search.get_blog()
                 else:
                     self.remind.info.setText('发生错误, 请稍后重试!')
             else:
