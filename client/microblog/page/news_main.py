@@ -183,6 +183,8 @@ class Ui_message1(object):
         # praise页面返回键链接主页面
         self.p.toolButton.clicked.connect(self.praise_back)
         QtCore.QMetaObject.connectSlotsByName(message1)
+        
+        self.message_fun()
 
     # 调消息页面
     def message_fun(self, username):
