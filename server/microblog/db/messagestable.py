@@ -269,7 +269,7 @@ class Messages(MainAction):
         messagesinfo = self.getmessagesinfo()
         sql_yuju = """insert into messages(userid,messagesinfo) values(
         {},'{}');""".format(int(userid),escape_string(messagesinfo))
-        sql = """update userinfo set phonenumber=phonenumber+1 where userid={};""".format(int(userid))
+        sql = """update userinfo set publishnum=publishnum+1 where userid={};""".format(int(userid))
         try:
             self.yb.execute(sql_yuju)
             self.yb.execute(sql)
