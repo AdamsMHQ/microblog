@@ -274,12 +274,12 @@ class Ui_message1(object):
                 znews = msg.getmessagesinfo()
                 # print('1234456788', znews)
                 self.p.textBrowser.append('*'*42)
-                self.p.textBrowser.append('''<p style="color:'orange'">消息</p>''')
+                self.p.textBrowser.append('''<p style="color:'orange';font-size:20px;">消息</p>''')
                 l += znews + "\n"+'-'*59+"\n"
                 self.p.textBrowser.append(l)
-                self.p.textBrowser.append('''<p style="color:'orange'">点赞用户</p>''')
+                self.p.textBrowser.append('''<p style="color:'orange';font-size:20px;">点赞用户</p>''')
                 comname = admin.getusername()
-                self.p.textBrowser.append('''<p style="color:'blue'">'''+comname+'</p>')
+                self.p.textBrowser.append('''<p style="color:'blue';font-size:20px;">'''+comname+'</p>')
                 comtime = admin.getadminstime()
                 # l='  '+comtime    
                 self.p.textBrowser.append('''<p style="font-size:16px">'''+'&nbsp;&nbsp;'+comtime+'</p>')
