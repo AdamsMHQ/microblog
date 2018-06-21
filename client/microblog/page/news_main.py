@@ -187,7 +187,7 @@ class Ui_message1(object):
         self.message_fun()
 
     # 调消息页面
-    def message_fun(self, username):
+    def message_fun(self):
         l='新功能敬请期待!'
         self.textBrowser.setText(l)
 
