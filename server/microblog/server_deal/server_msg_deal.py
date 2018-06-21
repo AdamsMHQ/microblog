@@ -376,8 +376,8 @@ class ServerMsgDeal(object):
 									'introduce':'' if not introduce else introduce,
 									'email':'' if not email else email,
 									'phonenumber':'' if not phonenumber else phonenumber,
-									'publishnum':'' if not publishnum else publishnum,
-									'laudnum':'' if not laudnum else laudnum,
+									'publishnum':0 if not publishnum else publishnum,
+									'laudnum':0 if not laudnum else laudnum,
 									'registertime':'' if not registertime else registertime
 								}
 						}

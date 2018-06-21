@@ -397,6 +397,7 @@ class Main(object):
             # 是用户自己, 则只点赞
             if statuscode1 == "0000":
                 self.remind.info.setText('为自己点赞成功!')
+                self.get_info()
             else:
                 self.remind.info.setText('发生错误, 请稍后重试!')
 
@@ -427,6 +428,7 @@ class Main(object):
                     self.remind.info.setText('转发成功!')
                     self.home.get_hot()
                     self.showed = self.home.get_hotblog()
+                    self.get_info()
                 else:
                     self.remind.info.setText('发生错误, 请稍后重试!')
             else:
@@ -439,7 +441,7 @@ class Main(object):
     # 主页前往消息页面
     def home_to_msg(self):
         self.MessageWindow = QtWidgets.QDialog()
-        self.message.setupUi(self.MessageWindow)
+        self.message.setupUi(self.MessageWindow,self.userid, self.username)
         self.Message_btn()
         self.HomeWindow.hide()
         self.MessageWindow.show()
@@ -489,6 +491,7 @@ class Main(object):
         self.sendBlogWindow.close()
         self.home.get_hot()
         self.blog_refresh()
+        self.get_info()
 
     # 以下为搜索页面相关的按钮事件
     # 搜索页面
@@ -509,7 +512,7 @@ class Main(object):
 
     def search_to_message(self):
         self.MessageWindow = QtWidgets.QDialog()
-        self.message.setupUi(self.MessageWindow)
+        self.message.setupUi(self.MessageWindow,self.userid, self.username)
         self.Message_btn()
         self.SearchWindow.close()
         self.MessageWindow.show()
@@ -576,6 +579,7 @@ class Main(object):
                     self.remind.info.setText('点赞成功, 您已成功关注该用户!')
                     self.search.get_hot()
                     self.showed = self.search.get_hotblog()
+                    self.search_page()
             else:
                 self.remind.info.setText('发生错误, 请稍后重试!')
         else:
@@ -611,7 +615,7 @@ class Main(object):
                 if code == '0000':
                     self.remind.info.setText('转发成功!')
                     self.search.get_hot()
-                    self.showed = self.search.get_hotblog()
+                    self.showed = self.search.get_blog()
                 else:
                     self.remind.info.setText('发生错误, 请稍后重试!')
             else:
@@ -718,7 +722,7 @@ class Main(object):
 
     def me_to_message(self):
         self.MessageWindow = QtWidgets.QDialog()
-        self.message.setupUi(self.MessageWindow)
+        self.message.setupUi(self.MessageWindow, self.userid, self.username)
         self.Message_btn()
         self.MeWindow.close()
         self.MessageWindow.show()

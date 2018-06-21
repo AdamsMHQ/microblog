@@ -24,12 +24,15 @@ class Ui_message1(object):
     def __init__(self, client):
         self.client = client
 
-    def setupUi(self, message1):
+    def setupUi(self, message1,userid,username):
         # 创建Comment对象属性
         self.u = Comment()
         self.Dialog = QtWidgets.QDialog()
         self.u.setupUi1(self.Dialog)
 
+        self.userid=userid
+        self.username=username
+        
         # 创建praise对象的属性
         self.p = Praise()
         self.Dialog2 = QtWidgets.QDialog()
@@ -180,6 +183,8 @@ class Ui_message1(object):
         # praise页面返回键链接主页面
         self.p.toolButton.clicked.connect(self.praise_back)
         QtCore.QMetaObject.connectSlotsByName(message1)
+        
+        self.message_fun()
 
     # 调消息页面
     def message_fun(self, username):
@@ -209,12 +214,12 @@ class Ui_message1(object):
         self.message1.hide()
         
         # 通过用户id和评论块调用
-        statuscode, blogmsglist = self.client.do_show_bloginfo(1, 2)
+        statuscode, blogmsglist = self.client.do_show_bloginfo(self.userid, 2)
+
+        l = ''
+
         if statuscode == '0000':
-            print(len(blogmsglist))
-           
             for admin in blogmsglist:
-                l = ''
                 msg = admin.getmessagesobject()
                 # 本用户消息
                 znews = msg.getmessagesinfo()
@@ -222,7 +227,9 @@ class Ui_message1(object):
                 self.u.textBrowser.append('*'*42)
                 
                 self.u.textBrowser.append('''<p style="color:'orange';font-size:20px;">消息</p>''')
-                l = znews + "\n"+'-'*59
+
+                l = znews + "\n"+'-'*59+'\n'
+
                 self.u.textBrowser.append(l)
                 self.u.textBrowser.append('''<p style="color:'orange';font-size:20px;">用户评论</p>''')
                 comname = admin.getusername()
@@ -231,7 +238,6 @@ class Ui_message1(object):
                 self.u.textBrowser.append('''<p style="font-size:16px">'''+'&nbsp;&nbsp;'+comtime+'</p>')
                 comcontent = admin.getcommentinfo()
                 self.u.textBrowser.append('''<p style="font-size:20px">'''+comcontent+'</p>')
-           
 
         elif statuscode == '0001':
             l += '暂时没有评论呦!'
@@ -251,7 +257,7 @@ class Ui_message1(object):
         self.Dialog2.show()
         self.message1.hide()
         l = ''
-        statuscode, blogmsglist = self.client.do_show_bloginfo(1, 0)
+        statuscode, blogmsglist = self.client.do_show_bloginfo(self.userid, 0)
         if statuscode == '0001':
             l += '暂时没有点赞呦!'
             self.p.textBrowser.setText(l)
@@ -259,30 +265,25 @@ class Ui_message1(object):
         elif statuscode == '0002':
             l += '请稍后刷新重试!'
             self.p.textBrowser.setText(l)
-            
+
         else:
         # 通过用户id和赞块调用
-            statuscode, blogmsglist = self.client.do_show_bloginfo(1, 2)
-            if statuscode == '0000':
-
-                for admin in blogmsglist:
-                    l=''
-                    msg = admin.getmessagesobject()
-                    # 本用户消息
-                    znews = msg.getmessagesinfo()
-                    print('1234456788', znews)
-                    self.p.textBrowser.append('*'*42)
-                    self.p.textBrowser.append('''<p style="color:'orange'">消息</p>''')
-                    l += znews + "\n"+'-'*59
-                    self.p.textBrowser.append(l)
-                    self.p.textBrowser.append('''<p style="color:'orange'">点赞用户</p>''')
-                    comname = admin.getusername()
-                    self.p.textBrowser.append('''<p style="color:'blue'">'''+comname+'</p>')
-                    comtime = admin.getadminstime()
-                    # l='  '+comtime
-                    
-                    self.p.textBrowser.append('''<p style="font-size:16px">'''+'&nbsp;&nbsp;'+comtime+'</p>')
-                    self.p.textBrowser.append('''<p style="font-size:18px">'''+'赞了这条微博'+'</p>')
+            for admin in blogmsglist:
+                msg = admin.getmessagesobject()
+                # 本用户消息
+                znews = msg.getmessagesinfo()
+                # print('1234456788', znews)
+                self.p.textBrowser.append('*'*42)
+                self.p.textBrowser.append('''<p style="color:'orange'">消息</p>''')
+                l += znews + "\n"+'-'*59+"\n"
+                self.p.textBrowser.append(l)
+                self.p.textBrowser.append('''<p style="color:'orange'">点赞用户</p>''')
+                comname = admin.getusername()
+                self.p.textBrowser.append('''<p style="color:'blue'">'''+comname+'</p>')
+                comtime = admin.getadminstime()
+                # l='  '+comtime    
+                self.p.textBrowser.append('''<p style="font-size:16px">'''+'&nbsp;&nbsp;'+comtime+'</p>')
+                self.p.textBrowser.append('''<p style="font-size:18px">'''+'赞了这条微博'+'</p>')
        
 
     # praise页面返回消息页面
