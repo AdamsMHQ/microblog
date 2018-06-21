@@ -228,9 +228,7 @@ class Ui_message1(object):
                 
                 self.u.textBrowser.append('''<p style="color:'orange';font-size:20px;">消息</p>''')
 
-                l = znews + "\n"+'-'*59+'\n'
-
-                self.u.textBrowser.append(l)
+                self.u.textBrowser.append(znews + "\n"+'-'*59+'\n')
                 self.u.textBrowser.append('''<p style="color:'orange';font-size:20px;">用户评论</p>''')
                 comname = admin.getusername()
                 self.u.textBrowser.append('''<p style="color:'blue';font-size:20px;">'''+comname+'</p>')
@@ -275,9 +273,9 @@ class Ui_message1(object):
                 # print('1234456788', znews)
                 self.p.textBrowser.append('*'*42)
 
-                self.p.textBrowser.append('''<p style="color:'orange'">消息</p>''')
+                self.p.textBrowser.append('''<p style="color:'orange';font-size:20px;">消息</p>''')
                 self.p.textBrowser.append(znews + "\n"+'-'*59+"\n")
-                self.p.textBrowser.append('''<p style="color:'orange'">点赞用户</p>''')
+                self.p.textBrowser.append('''<p style="color:'orange';font-size:20px;">点赞用户</p>''')
 
                 comname = admin.getusername()
                 self.p.textBrowser.append('''<p style="color:'blue';font-size:20px;">'''+comname+'</p>')
