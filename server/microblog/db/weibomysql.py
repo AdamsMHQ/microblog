@@ -48,7 +48,7 @@ class WeiBo():
             phonenumber varchar(20) not null,
             introduce varchar(300) default ' ',
             publishnum int default 0,
-            laudnum varchar(20) default 0,
+            laudnum int default 0,
             registtime timestamp,
             userid int,
             foreign key(userid) 
