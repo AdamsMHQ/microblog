@@ -245,17 +245,20 @@ class Main(object):
     # 注册页面提交按钮
     def go_me(self):
         # 将注册信息保存为类属性
-        self.username, self.phoneno, self.mail = self.signup.signup_info()
-        self.Go_signup.close()
-        try:
-            # 直接跳转到主页, 如果发生异常则通过登录跳转
-            self.home_page()
-        except Exception as e:
-            print(e)
-            self.Go_signin = QtWidgets.QDialog()
-            self.signin.setupUi(self.Go_signin)
-            self.Signin_btn()
-            self.Go_signin.show()
+        info = self.signup.signup_info()
+        print(info)
+        if info: 
+            self.username, self.phoneno, self.mail = info
+            self.Go_signup.close()
+            try:
+                # 直接跳转到主页, 如果发生异常则通过登录跳转
+                self.home_page()
+            except Exception as e:
+                print(e)
+                self.Go_signin = QtWidgets.QDialog()
+                self.signin.setupUi(self.Go_signin)
+                self.Signin_btn()
+                self.Go_signin.show()
 
     # 用于主页面的显示及刷新
     def blog_refresh(self):
