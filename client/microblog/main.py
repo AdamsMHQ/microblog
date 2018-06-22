@@ -251,6 +251,7 @@ class Main(object):
             # 直接跳转到主页, 如果发生异常则通过登录跳转
             self.home_page()
         except Exception as e:
+            print(e)
             self.Go_signin = QtWidgets.QDialog()
             self.signin.setupUi(self.Go_signin)
             self.Signin_btn()

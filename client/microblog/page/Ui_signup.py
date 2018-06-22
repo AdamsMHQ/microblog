@@ -257,14 +257,12 @@ class Ui_Signup(object):
                                            self.phoneNumber_t, self.mail_t)
             print(self.name_t, self.hash_pwd, self.phoneNumber_t, self.mail_t)
             print(info)
-            if info == '0000':
+            if info[0] == '0000':
                 return (self.name_t, self.phoneNumber_t, self.mail_t)
-            elif info == '0001':
+            elif info[0] == '0001':
                 self.tip_phone.setText('用户名已存在,请重试')
-                return ('', '', '')
             else:
                 self.tip_phone.setText('未知错误,请重试')
-                return ('', '', '')
 
 
 # 自测函数
